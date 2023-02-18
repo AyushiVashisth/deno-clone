@@ -8,5 +8,4 @@
 - create a new project
 - select the recent repositary
 -click deploy
-
 - go to repository "setting" and open the "Pages", then select the "master" , then select the "github" then click "config" then click "start commit" then click "commit new file"

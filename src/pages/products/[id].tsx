@@ -56,7 +56,6 @@ const ProductDetail = ({product}: ProductDetailProps) => {
 };
 
 export default ProductDetail;
-
 export const getStaticPaths: GetStaticPaths = async() => {
   const data:any = await getProductsAPI();
   // console.log(data)
@@ -65,11 +64,9 @@ export const getStaticPaths: GetStaticPaths = async() => {
     fallback: false,
   }
 }
-
 export const getStaticProps: GetStaticProps = async(ctx:any) => {
   const id: any = ctx.params?.id;
   const data = await getProductAPI(id || "");
-
   return {
     props: {
       product: data,
