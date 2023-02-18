@@ -9,38 +9,37 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { getProductAPI, getProductsAPI } from "@/redux/product/product.api";
 import { Product } from "@/utils/types";
 
-
 type ProductDetailProps = {
   product: Product;
-}
+};
 
-const ProductDetail = ({product}: ProductDetailProps) => {
+const ProductDetail = ({ product }: ProductDetailProps) => {
   return (
     <>
       <NextSEO
-        title="homepage"
-        description="Home page for my webpage"
-        ogImage="/og-image.png"
+        title='homepage'
+        description='Home page for my webpage'
+        ogImage='/og-image.png'
         url={new URL("http://localhost:3000/")}
       />
       <Box
-        w="calc(11/12)%"
-        mt="16"
-        maxW="5xl"
-        mx="auto"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        position="relative"
+        w='calc(11/12)%'
+        mt='16'
+        maxW='5xl'
+        mx='auto'
+        display='flex'
+        alignItems='center'
+        justifyContent='space-between'
+        position='relative'
       >
-        <Link href="/">
+        <Link href='/'>
           <Text
-            display="flex"
-            alignItems="center"
+            display='flex'
+            alignItems='center'
             gap={2}
-            textColor="gray.400"
-            transition="text-color"
-            transitionDuration="200s"
+            textColor='gray.400'
+            transition='text-color'
+            transitionDuration='200s'
             _hover={{
               textColor: "gray.800",
             }}
@@ -56,20 +55,23 @@ const ProductDetail = ({product}: ProductDetailProps) => {
 };
 
 export default ProductDetail;
-export const getStaticPaths: GetStaticPaths = async() => {
-  const data:any = await getProductsAPI();
-  // console.log(data)
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = await getProductsAPI();
+
   return {
-    paths: data.map((product: Product) => ({params: {id: String(product.id) }})), 
+    paths: data.map((product: Product) => ({ params: { id: String(product.id) } })),
     fallback: false,
-  }
-}
-export const getStaticProps: GetStaticProps = async(ctx:any) => {
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (ctx: any) => {
   const id: any = ctx.params?.id;
   const data = await getProductAPI(id || "");
+
   return {
     props: {
       product: data,
-    }
-  }
-}
+    },
+  };
+};
